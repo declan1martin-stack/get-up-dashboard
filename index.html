@@ -15,7 +15,7 @@
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 16px 14px 48px; }
+  .wrap { max-width: 940px; margin: 0 auto; padding: 16px 14px 48px; }
   .amber { color: #ffce54; }
   .red { color: #ff5a5a; }
   .green { color: #3ddc84; }
@@ -34,7 +34,6 @@
     background: #0e1512; padding: 7px 12px; border-bottom: 1px solid #1f3a2c; font-weight: 700;
   }
   .section .body { padding: 10px 12px; }
-  /* buckets */
   .buckets { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .bucket { border: 1px solid #1f3a2c; border-radius: 5px; padding: 9px 10px; background: #0c1210; }
   .bucket .name { font-size: 10px; letter-spacing: 1px; color: #5c7a68; text-transform: uppercase; }
@@ -44,16 +43,16 @@
   .l-green { background:#3ddc84; box-shadow:0 0 6px #3ddc84; }
   .l-amber { background:#ffce54; box-shadow:0 0 6px #ffce54; }
   .l-red { background:#ff5a5a; box-shadow:0 0 6px #ff5a5a; }
-  /* tape */
   table { width: 100%; border-collapse: collapse; }
-  th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid #16261d; font-size: 12px; }
+  th, td { text-align: left; padding: 5px 6px; border-bottom: 1px solid #16261d; font-size: 12px; vertical-align: top; }
   th { color: #5c7a68; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
   td.tk { color: #e8fff0; font-weight: 700; }
   .pill { display:inline-block; font-size:10px; padding:1px 6px; border-radius:3px; border:1px solid #1f3a2c; }
   .pill.core { color:#7fe0a0; border-color:#2a4d3a; }
   .pill.spec { color:#ffce54; border-color:#4d4022; }
+  .pill.swing { color:#6db3f2; border-color:#22405c; }
+  .pill.option { color:#ff8fb1; border-color:#5c2233; }
   .flag { font-size: 11px; }
-  /* radar */
   .evt { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #16261d; }
   .evt:last-child { border-bottom:none; }
   .evt .l { display:flex; align-items:center; gap:8px; }
@@ -62,7 +61,6 @@
   .b-imminent { color:#ff5a5a; border-color:#5a1f1f; background:#1a0d0d; }
   .b-soon { color:#ffce54; border-color:#4d4022; background:#15120a; }
   .b-far { color:#5c7a68; border-color:#1f3a2c; }
-  /* checklist */
   .chk { display:flex; align-items:flex-start; gap:9px; padding:6px 0; cursor:pointer; user-select:none; }
   .chk .box { width:16px; height:16px; border:1px solid #2a4d3a; border-radius:3px; flex:0 0 auto; margin-top:1px; text-align:center; line-height:15px; font-size:12px; color:#0a0e0d; }
   .chk.on .box { background:#3ddc84; border-color:#3ddc84; }
@@ -72,82 +70,119 @@
   .gate { margin-top:10px; padding:8px 10px; border-radius:5px; font-size:12px; text-align:center; letter-spacing:1px; }
   .gate.locked { background:#1a0d0d; color:#ff5a5a; border:1px solid #5a1f1f; }
   .gate.clear { background:#0d1a12; color:#3ddc84; border:1px solid #2a4d3a; }
-  textarea {
-    width:100%; min-height:90px; background:#0c1210; color:#c8f7d4; border:1px solid #1f3a2c;
-    border-radius:5px; padding:8px; font-family:inherit; font-size:12px; resize:vertical;
+  textarea, input[type=text], input[type=number], select {
+    background:#0c1210; color:#c8f7d4; border:1px solid #1f3a2c;
+    border-radius:5px; padding:6px 8px; font-family:inherit; font-size:12px;
   }
-  textarea:focus { outline:none; border-color:#2a4d3a; }
-  .row-actions { margin-top:8px; display:flex; gap:8px; align-items:center; }
+  textarea { width:100%; min-height:90px; resize:vertical; }
+  textarea:focus, input:focus, select:focus { outline:none; border-color:#2a4d3a; }
+  .row-actions { margin-top:8px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
   button {
     background:#0e1512; color:#7fe0a0; border:1px solid #2a4d3a; border-radius:4px;
     padding:5px 12px; font-family:inherit; font-size:11px; cursor:pointer; letter-spacing:1px;
   }
   button:hover { background:#12201a; }
+  button.danger { color:#ff5a5a; border-color:#5a1f1f; padding:2px 7px; }
   .save-note { font-size:10px; color:#5c7a68; }
   .foot { text-align:center; font-size:10px; color:#3d5548; margin-top:16px; }
   .note-charter { font-size:10px; color:#5c7a68; margin-top:6px; font-style:italic; }
+  .swform { display:grid; grid-template-columns: 90px 100px 1fr 90px 90px 90px; gap:6px; align-items:end; }
+  .swform label { font-size:9px; letter-spacing:1px; color:#5c7a68; text-transform:uppercase; display:block; margin-bottom:2px; }
+  .swform input, .swform select { width:100%; }
+  .privacy { font-size:10px; color:#5c7a68; border:1px dashed #1f3a2c; border-radius:4px; padding:6px 8px; margin-bottom:9px; }
+  .empty { color:#3d5548; font-size:12px; padding:8px 0; }
+  .warn { font-size:10px; color:#ffce54; margin-top:3px; }
+  .warn.bad { color:#ff5a5a; }
+  @media (max-width: 720px) {
+    .buckets { grid-template-columns: 1fr; }
+    .swform { grid-template-columns: 1fr 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div id="clock">--</div>
-    <div class="title">GET UP ▸ CHARTER COMPLIANCE</div>
-    <div class="sub">Discipline enforcer &amp; analyst — not executor. The charter exists because of real drawdowns.</div>
+    <div class="title">GET UP &#9656; CHARTER COMPLIANCE</div>
+    <div class="sub">Discipline enforcer &amp; analyst &mdash; not executor. The charter exists because of real drawdowns.</div>
   </header>
 
-  <!-- BUCKETS -->
   <div class="section">
     <h2>Bucket Status</h2>
     <div class="body">
       <div class="buckets">
         <div class="bucket">
-          <div class="name">1 · Core</div>
+          <div class="name">1 &middot; Core</div>
           <div class="val"><span class="light l-green"></span><span class="green">HOLD</span></div>
-          <div class="rule">Long-term equity · min 1yr · never tactical ammo</div>
+          <div class="rule">Long-term equity &middot; min 1yr &middot; never tactical ammo</div>
         </div>
         <div class="bucket">
-          <div class="name">2 · Aggression Budget</div>
+          <div class="name">2 &middot; Aggression Budget</div>
           <div class="val"><span class="light l-green" id="b2light"></span><span id="b2val" class="green">0 / 2 slots</span></div>
-          <div class="rule">Max 2 tactical · $3,000/mo · no entries through binary events</div>
+          <div class="rule">Swings + options combined &middot; max 2 open &middot; monthly budget capped</div>
         </div>
         <div class="bucket">
-          <div class="name">3 · Cash Floor</div>
-          <div class="val"><span class="light l-green"></span><span class="green">$4,500 FLOOR</span></div>
-          <div class="rule">Hard floor · never deployed tactically</div>
+          <div class="name">3 &middot; Cash Floor</div>
+          <div class="val"><span class="light l-green" id="floorlight"></span><span class="green" id="floorval">INTACT</span></div>
+          <div class="rule">Hard floor &middot; never deployed tactically</div>
         </div>
       </div>
       <div class="row-actions">
-        <button onclick="cycleB2()">Toggle Bucket-2 slots</button>
-        <span class="save-note" id="b2note">Confirm live occupancy on E*TRADE before sizing.</span>
+        <button onclick="cycleFloor()">Toggle floor status</button>
+        <span class="save-note">Bucket 2 auto-counts from the trade book below. Status only &mdash; no balances stored anywhere.</span>
       </div>
     </div>
   </div>
 
-  <!-- POSITION TAPE -->
   <div class="section">
-    <h2>Position Tape</h2>
+    <h2>Bucket 2 Trade Book &mdash; Swings &amp; Options</h2>
+    <div class="body">
+      <div class="privacy">Stored only in this browser (localStorage). Nothing entered here is committed to the repo or published.</div>
+      <table>
+        <thead><tr><th>Ticker</th><th>Type</th><th>Held</th><th>Entry / Stop / Target &amp; thesis</th><th>R:R</th><th>Binary</th><th></th></tr></thead>
+        <tbody id="swbody"></tbody>
+      </table>
+      <div id="swempty" class="empty">No open Bucket-2 positions. Both slots free &mdash; but "nothing clears threshold" is a legitimate outcome.</div>
+
+      <div style="margin-top:12px;border-top:1px solid #16261d;padding-top:10px;">
+        <div class="swform">
+          <div><label>Ticker</label><input type="text" id="f_tk" maxlength="6" placeholder="MSFT"></div>
+          <div><label>Type</label><select id="f_ty"><option value="swing">Swing</option><option value="option">Option</option></select></div>
+          <div><label>Thesis (required)</label><input type="text" id="f_th" placeholder="post-earnings overreaction, beat-and-raise selloff"></div>
+          <div><label>Entry</label><input type="number" id="f_en" step="0.01" placeholder="0.00"></div>
+          <div><label>Stop</label><input type="number" id="f_st" step="0.01" placeholder="0.00"></div>
+          <div><label>Target</label><input type="number" id="f_tg" step="0.01" placeholder="0.00"></div>
+        </div>
+        <div class="row-actions">
+          <button onclick="addSwing()">Add position</button>
+          <span class="save-note" id="swmsg">Share prices only &mdash; never position size or account value.</span>
+        </div>
+      </div>
+      <div class="note-charter">Charter: swings and tactical options share the same 2-slot cap. Stop Limit on Quote placed live at entry &mdash; not held mentally. Core is never sold to fund a Bucket-2 entry.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Core &amp; Spec Position Tape</h2>
     <div class="body">
       <table>
         <thead><tr><th>Ticker</th><th>Sleeve</th><th>Binary flag</th></tr></thead>
         <tbody id="tape"></tbody>
       </table>
-      <div class="note-charter">Rotation queue: MSFT (cleanest re-entry) · IBM (core-only — active fraud probe = unscheduled binary) · ORLY (NAPA bid overhang, conviction ~50%). CEG &amp; QUBT: no thesis/entry/stop on file — do not size until documented.</div>
+      <div class="note-charter">Rotation queue: MSFT (cleanest re-entry) &middot; IBM (core-only &mdash; active fraud probe = unscheduled binary) &middot; ORLY (NAPA bid overhang, conviction ~50%). CEG &amp; QUBT: no thesis/entry/stop on file &mdash; do not size until documented.</div>
     </div>
   </div>
 
-  <!-- BINARY RADAR -->
   <div class="section">
     <h2>Binary Event Radar</h2>
     <div class="body" id="radar"></div>
   </div>
 
-  <!-- PRE-TRADE CHECKLIST -->
   <div class="section">
     <h2>Pre-Trade Checklist <span class="dim" id="chkdate" style="text-transform:none;letter-spacing:0;"></span></h2>
     <div class="body">
       <div id="checklist"></div>
-      <div id="gate" class="gate locked">GATE LOCKED — complete checklist before any entry</div>
+      <div id="gate" class="gate locked">GATE LOCKED &mdash; complete checklist before any entry</div>
       <div class="row-actions">
         <button onclick="resetChecklist()">Reset for today</button>
         <span class="save-note">Persists per day.</span>
@@ -155,7 +190,6 @@
     </div>
   </div>
 
-  <!-- DAILY NOTES -->
   <div class="section">
     <h2>Daily Notes <span class="dim" id="notedate" style="text-transform:none;letter-spacing:0;"></span></h2>
     <div class="body">
@@ -174,36 +208,39 @@
   "use strict";
   var LS = window.localStorage;
 
-  // ---- date helpers (Pacific-agnostic local render) ----
   function todayKey(){ var d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
   function daysUntil(iso){
     var t=new Date(); t.setHours(0,0,0,0);
     var d=new Date(iso+'T00:00:00'); d.setHours(0,0,0,0);
     return Math.round((d-t)/86400000);
   }
+  function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
 
-  // ---- clock ----
   function tick(){
     var d=new Date();
-    var opts={weekday:'short',month:'short',day:'numeric'};
     document.getElementById('clock').textContent =
-      d.toLocaleDateString('en-US',opts).toUpperCase()+' · '+
+      d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).toUpperCase()+' · '+
       d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
   }
   tick(); setInterval(tick,15000);
 
-  // ---- position tape ----
-  var positions = [
-    {t:'VTI',  s:'core'}, {t:'CVX', s:'core'}, {t:'META',s:'core'},
-    {t:'VRTX', s:'core'}, {t:'CEG', s:'core'}, {t:'PLUG',s:'core'},
-    {t:'CRDO', s:'spec'}, {t:'IREN',s:'spec'}, {t:'POET',s:'spec'},
-    {t:'QUBT', s:'spec'}, {t:'SPCX',s:'spec'}
-  ];
-  // binary flags keyed to ticker (dates below)
   var eventByTicker = {
     VRTX:'2026-08-03', SPCX:'2026-08-04', CEG:'2026-08-06',
-    PLUG:'2026-08-10', QUBT:'2026-08-13', POET:'2026-08-19'
+    PLUG:'2026-08-10', QUBT:'2026-08-13', POET:'2026-08-19',
+    IREN:'2026-08-27', CRDO:'2026-09-09'
   };
+  var events = [
+    {label:'VRTX earnings (AMC)',            iso:'2026-08-03'},
+    {label:'SPCX first-ever earnings (AMC)', iso:'2026-08-04'},
+    {label:'SPCX IPO lockup expiration',     iso:'2026-08-06'},
+    {label:'CEG earnings',                   iso:'2026-08-06'},
+    {label:'PLUG earnings',                  iso:'2026-08-10'},
+    {label:'QUBT earnings (~window opens)',  iso:'2026-08-13'},
+    {label:'POET earnings (confirmed)',      iso:'2026-08-19'},
+    {label:'IREN earnings (Aug 27 / Sep 16 — sources disagree)', iso:'2026-08-27'},
+    {label:'CRDO clear until',               iso:'2026-09-09'}
+  ];
+
   function flagFor(tk){
     var iso=eventByTicker[tk]; if(!iso) return '<span class="dim">clear</span>';
     var n=daysUntil(iso);
@@ -213,6 +250,13 @@
     if(n<=7) return '<span class="amber flag">binary in '+n+'d</span>';
     return '<span class="dim flag">binary in '+n+'d</span>';
   }
+
+  var positions = [
+    {t:'VTI', s:'core'}, {t:'CVX', s:'core'}, {t:'META',s:'core'},
+    {t:'VRTX',s:'core'}, {t:'CEG', s:'core'}, {t:'PLUG',s:'core'},
+    {t:'CRDO',s:'spec'}, {t:'IREN',s:'spec'}, {t:'POET',s:'spec'},
+    {t:'QUBT',s:'spec'}, {t:'SPCX',s:'spec'}
+  ];
   (function renderTape(){
     var h='';
     positions.forEach(function(p){
@@ -223,18 +267,6 @@
     document.getElementById('tape').innerHTML=h;
   })();
 
-  // ---- binary radar ----
-  var events = [
-    {tk:'VRTX', label:'VRTX earnings (AMC)',            iso:'2026-08-03'},
-    {tk:'SPCX', label:'SPCX first-ever earnings (AMC)', iso:'2026-08-04'},
-    {tk:'SPCX', label:'SPCX IPO lockup expiration',     iso:'2026-08-06'},
-    {tk:'CEG',  label:'CEG earnings',                   iso:'2026-08-06'},
-    {tk:'PLUG', label:'PLUG earnings',                  iso:'2026-08-10'},
-    {tk:'QUBT', label:'QUBT earnings (~window opens)',  iso:'2026-08-13'},
-    {tk:'POET', label:'POET earnings (confirmed)',      iso:'2026-08-19'},
-    {tk:'IREN', label:'IREN earnings (Aug 27 / Sep 16 — sources disagree)', iso:'2026-08-27'},
-    {tk:'CRDO', label:'CRDO clear until',               iso:'2026-09-09'}
-  ];
   (function renderRadar(){
     var live = events.filter(function(e){ return daysUntil(e.iso)>=0; })
                      .sort(function(a,b){ return daysUntil(a.iso)-daysUntil(b.iso); });
@@ -248,34 +280,132 @@
       h+='<div class="evt"><div class="l"><span class="badge '+cls+'">'+badge+'</span>'+
          '<span>'+e.label+'</span></div><div class="cd">'+cd+'</div></div>';
     });
-    if(!h) h='<div class="dim">No upcoming binary events on file.</div>';
-    document.getElementById('radar').innerHTML=h;
+    document.getElementById('radar').innerHTML = h || '<div class="dim">No upcoming binary events on file.</div>';
   })();
 
-  // ---- pre-trade checklist (per-day persistence) ----
+  // ---- Bucket 2 trade book: swings + options ----
+  var SW='getup.book';
+  function loadBook(){ try{ return JSON.parse(LS.getItem(SW))||[]; }catch(e){ return []; } }
+  function saveBook(b){ LS.setItem(SW, JSON.stringify(b)); }
+  function heldDays(iso){
+    var d=new Date(iso+'T00:00:00'); d.setHours(0,0,0,0);
+    var t=new Date(); t.setHours(0,0,0,0);
+    return Math.max(0, Math.round((t-d)/86400000));
+  }
+  function rr(en,st,tg){
+    en=parseFloat(en); st=parseFloat(st); tg=parseFloat(tg);
+    if(!isFinite(en)||!isFinite(st)||!isFinite(tg)) return null;
+    var risk=Math.abs(en-st), reward=Math.abs(tg-en);
+    if(risk<=0) return null;
+    return reward/risk;
+  }
+  window.addSwing=function(){
+    var tk=document.getElementById('f_tk').value.trim().toUpperCase();
+    var ty=document.getElementById('f_ty').value;
+    var th=document.getElementById('f_th').value.trim();
+    var en=document.getElementById('f_en').value;
+    var st=document.getElementById('f_st').value;
+    var tg=document.getElementById('f_tg').value;
+    var msg=document.getElementById('swmsg');
+    if(!tk){ msg.innerHTML='<span class="red">Ticker required.</span>'; return; }
+    if(!th){ msg.innerHTML='<span class="red">Thesis required — an entry with no written thesis is a manufactured trade.</span>'; return; }
+    if(!st){ msg.innerHTML='<span class="red">Stop required — Stop Limit on Quote goes live at entry, not in your head.</span>'; return; }
+    var book=loadBook();
+    if(book.length>=2){ msg.innerHTML='<span class="red">Both Bucket-2 slots are full. Charter: no new tactical entries.</span>'; return; }
+    var iso=eventByTicker[tk], n=iso?daysUntil(iso):null;
+    if(ty==='option' && n!==null && n>=0 && n<=3){
+      msg.innerHTML='<span class="red">Blocked: '+esc(tk)+' has a binary event in '+n+'d. Charter prohibits options through binary events — re-enter after the print.</span>';
+      return;
+    }
+    book.push({tk:tk,ty:ty,th:th,en:en,st:st,tg:tg,opened:todayKey()});
+    saveBook(book);
+    ['f_tk','f_th','f_en','f_st','f_tg'].forEach(function(id){ document.getElementById(id).value=''; });
+    msg.textContent='Added. Confirm the stop is live on the broker screen.';
+    renderBook();
+  };
+  window.removeSwing=function(i){
+    var book=loadBook(); book.splice(i,1); saveBook(book); renderBook();
+  };
+  function renderBook(){
+    var book=loadBook(), h='';
+    book.forEach(function(p,i){
+      var r=rr(p.en,p.st,p.tg);
+      var rtxt = r===null ? '<span class="dim">—</span>'
+               : (r>=2 ? '<span class="green">'+r.toFixed(1)+'R</span>'
+                       : '<span class="amber">'+r.toFixed(1)+'R</span>');
+      var d=heldDays(p.opened);
+      var px=(p.en||'—')+' / '+(p.st||'—')+' / '+(p.tg||'—');
+      var warn='';
+      var iso=eventByTicker[p.tk], n=iso?daysUntil(iso):null;
+      if(n!==null && n>=0 && n<=3){
+        warn += (p.ty==='option')
+          ? '<div class="warn bad">▲ CHARTER: close before the print. Re-entry after is the compliant version.</div>'
+          : '<div class="warn">Binary inside the hold window — size and stop accordingly.</div>';
+      }
+      if(r!==null && r<1.5){ warn+='<div class="warn">R:R below 1.5 — expectancy, not win rate.</div>'; }
+      h+='<tr>'+
+         '<td class="tk">'+esc(p.tk)+'</td>'+
+         '<td><span class="pill '+(p.ty==='option'?'option':'swing')+'">'+(p.ty==='option'?'OPTION':'SWING')+'</span></td>'+
+         '<td>'+d+'d</td>'+
+         '<td>'+esc(px)+'<div class="note-charter" style="margin-top:2px">'+esc(p.th)+'</div>'+warn+'</td>'+
+         '<td>'+rtxt+'</td>'+
+         '<td>'+flagFor(p.tk)+'</td>'+
+         '<td><button class="danger" onclick="removeSwing('+i+')">close</button></td>'+
+         '</tr>';
+    });
+    document.getElementById('swbody').innerHTML=h;
+    document.getElementById('swempty').style.display = book.length ? 'none' : 'block';
+    renderB2(book.length);
+  }
+
+  function renderB2(n){
+    var light=document.getElementById('b2light'), val=document.getElementById('b2val');
+    val.textContent=n+' / 2 slots';
+    if(n>=2){ light.className='light l-red'; val.className='red'; }
+    else if(n===1){ light.className='light l-amber'; val.className='amber'; }
+    else { light.className='light l-green'; val.className='green'; }
+  }
+
+  // ---- cash floor: qualitative status only, no balances ----
+  var FKEY='getup.floor';
+  var floorStates=[
+    {t:'INTACT',     c:'green', l:'l-green'},
+    {t:'NEAR FLOOR', c:'amber', l:'l-amber'},
+    {t:'BREACHED',   c:'red',   l:'l-red'}
+  ];
+  function renderFloor(){
+    var i=parseInt(LS.getItem(FKEY),10); if(isNaN(i)) i=0;
+    var s=floorStates[i];
+    document.getElementById('floorlight').className='light '+s.l;
+    var vv=document.getElementById('floorval'); vv.className=s.c; vv.textContent=s.t;
+  }
+  window.cycleFloor=function(){
+    var i=parseInt(LS.getItem(FKEY),10); if(isNaN(i)) i=0;
+    LS.setItem(FKEY,(i+1)%floorStates.length); renderFloor();
+  };
+  renderFloor();
+
   var checklistItems = [
     'Live market data confirmed on broker screen (no closed quotes)',
     'No binary event for this name before intended exit',
     'Conviction ≥ 50% (60%+ preferred) — thesis written, not manufactured',
-    'Bucket-2 has an open slot (≤2 tactical positions)',
+    'Bucket-2 has an open slot (swings + options ≤ 2)',
     'Entry price + Stop Limit on Quote defined and placed live at entry',
     'Not funded by selling Core · not a revenge/chase entry',
     'Rotation check: familiar name beats never-traded candidate on merit'
   ];
-  var ckKey = 'getup.chk.'+todayKey();
+  var ckKey='getup.chk.'+todayKey();
   function loadChk(){ try{ return JSON.parse(LS.getItem(ckKey))||{}; }catch(e){ return {}; } }
-  function saveChk(s){ LS.setItem(ckKey, JSON.stringify(s)); }
   function renderChecklist(){
     var state=loadChk(), h='';
     checklistItems.forEach(function(it,i){
-      var on=state[i]?' on':'';
-      h+='<div class="chk'+on+'" data-i="'+i+'"><div class="box"></div><div class="txt">'+it+'</div></div>';
+      h+='<div class="chk'+(state[i]?' on':'')+'" data-i="'+i+'"><div class="box"></div><div class="txt">'+it+'</div></div>';
     });
     var el=document.getElementById('checklist'); el.innerHTML=h;
     el.querySelectorAll('.chk').forEach(function(node){
       node.addEventListener('click',function(){
         var i=this.getAttribute('data-i'), s=loadChk();
-        s[i]=!s[i]; saveChk(s); renderChecklist();
+        s[i]=!s[i]; LS.setItem(ckKey,JSON.stringify(s)); renderChecklist();
       });
     });
     var done=checklistItems.every(function(_,i){ return state[i]; });
@@ -287,7 +417,6 @@
   window.resetChecklist=function(){ LS.removeItem(ckKey); renderChecklist(); };
   renderChecklist();
 
-  // ---- daily notes (per-day persistence) ----
   var noteKey='getup.notes.'+todayKey();
   var ta=document.getElementById('notes');
   ta.value=LS.getItem(noteKey)||'';
@@ -302,19 +431,7 @@
     },400);
   });
 
-  // ---- bucket 2 slot toggle ----
-  var b2Key='getup.b2';
-  function b2State(){ var v=parseInt(LS.getItem(b2Key),10); return isNaN(v)?0:v; }
-  function renderB2(){
-    var v=b2State();
-    var light=document.getElementById('b2light'), val=document.getElementById('b2val');
-    val.textContent=v+' / 2 slots';
-    if(v>=2){ light.className='light l-red'; val.className='red'; document.getElementById('b2note').innerHTML='<span class="red">FULL — no new tactical entries.</span>'; }
-    else if(v===1){ light.className='light l-amber'; val.className='amber'; document.getElementById('b2note').textContent='1 slot open.'; }
-    else { light.className='light l-green'; val.className='green'; document.getElementById('b2note').textContent='Both slots open. Confirm live on E*TRADE before sizing.'; }
-  }
-  window.cycleB2=function(){ LS.setItem(b2Key,(b2State()+1)%3); renderB2(); };
-  renderB2();
+  renderBook();
 })();
 </script>
 </body>
