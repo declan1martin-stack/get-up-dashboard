@@ -163,6 +163,18 @@
   </div>
 
   <div class="section">
+    <h2>Swing Screen <span class="dim" id="screendate" style="text-transform:none;letter-spacing:0;"></span></h2>
+    <div class="body">
+      <table>
+        <thead><tr><th>Name</th><th>Verdict</th><th>Read</th></tr></thead>
+        <tbody id="screen"></tbody>
+      </table>
+      <div id="screenverdict" class="gate locked" style="margin-top:10px;"></div>
+      <div class="note-charter">Screen is analyst input, not a recommendation — Claude is not a licensed advisor. Conviction floor 50%, 60%+ preferred. "Nothing clears" is a legitimate, high-expected-value outcome.</div>
+    </div>
+  </div>
+
+  <div class="section">
     <h2>Core &amp; Spec Position Tape</h2>
     <div class="body">
       <table>
@@ -281,6 +293,39 @@
          '<span>'+e.label+'</span></div><div class="cd">'+cd+'</div></div>';
     });
     document.getElementById('radar').innerHTML = h || '<div class="dim">No upcoming binary events on file.</div>';
+  })();
+
+  // ---- swing screen (reviewed manually; refreshed by the morning task) ----
+  var screenDate = '2026-08-03';
+  var candidates = [
+    {n:'VRTX', v:'watch', h:'Reported tonight AMC: rev $3.33B +12%, EPS $4.34, FY guide RAISED to $13.1–13.2B. CASGEVY +151%, JOURNAVX +4x. Binary is now BEHIND it — window open. Decision waits on the open: a disproportionate selloff is the setup; a gap up is a chase. Note you already hold VRTX in Core — a swing on top is concentration, not a new position.'},
+    {n:'MSFT', v:'fail',  h:'Beat big Jul 29 ($4.74 vs $4.33), +8% AH, ~$488 and still climbing Aug 3. Was flagged "cleanest re-entry" BEFORE the move. There is no overreaction left to buy — entering here is chasing, which the framework exists to prevent.'},
+    {n:'ORLY', v:'block', h:'$10B+ NAPA bid live, decision expected by end of summer, antitrust overhang. That is an unscheduled binary sitting open right now. Conviction already logged at ~50%, dead on the floor. Blocked for options; questionable for swings.'},
+    {n:'GLW',  v:'fail',  h:'Beat rev and profit but guided Q3 below consensus, then plunged. The selloff is EXPLAINED by the guide-down — not disproportionate to fundamentals. Fails the overreaction test.'},
+    {n:'SPCX', v:'block', h:'First-ever earnings Aug 4 + IPO lockup Aug 6. Double binary, highest-priority risk on the board. No entry, no exceptions.'},
+    {n:'CEG / QUBT', v:'block', h:'Binary events Aug 6 and ~Aug 13, and no thesis, entry price, or stop documented on either. Charter: do not size until documented.'},
+    {n:'Rotation: payments / industrials / staples', v:'watch', h:'Tape is rotating OUT of semis and AI infrastructure INTO industrials, payments and consumer names — i.e. out of exactly what you are overweight (CRDO, IREN, POET, QUBT). Direction is right for the rotation mandate, but no ticker-level work is done. Entering an unresearched name to fill a slot IS the manufactured trade.'}
+  ];
+  (function renderScreen(){
+    var map={watch:['b-soon','WATCH'],fail:['b-far','FAILS TEST'],block:['b-imminent','BLOCKED']};
+    var h='';
+    candidates.forEach(function(c){
+      var m=map[c.v]||map.fail;
+      h+='<tr><td class="tk">'+esc(c.n)+'</td>'+
+         '<td><span class="badge '+m[0]+'">'+m[1]+'</span></td>'+
+         '<td>'+esc(c.h)+'</td></tr>';
+    });
+    document.getElementById('screen').innerHTML=h;
+    document.getElementById('screendate').textContent='· reviewed '+screenDate;
+    var g=document.getElementById('screenverdict');
+    var clears=candidates.filter(function(c){ return c.v==='clear'; }).length;
+    if(clears===0){
+      g.className='gate locked';
+      g.textContent='NOTHING CLEARS THE 50% FLOOR TONIGHT — STAND ASIDE';
+    } else {
+      g.className='gate clear';
+      g.textContent=clears+' candidate(s) clear the floor — run the checklist';
+    }
   })();
 
   // ---- Bucket 2 trade book: swings + options ----
