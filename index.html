@@ -237,20 +237,19 @@
   tick(); setInterval(tick,15000);
 
   var eventByTicker = {
-    VRTX:'2026-08-03', SPCX:'2026-08-04', CEG:'2026-08-06',
-    PLUG:'2026-08-10', QUBT:'2026-08-13', POET:'2026-08-19',
-    IREN:'2026-08-27', CRDO:'2026-09-09'
+    VRTX:'2026-11-02', IREN:'2026-11-05', CEG:'2026-11-09',
+    PLUG:'2026-11-09', QUBT:'2026-11-09',
+    POET:'2026-11-16', CRDO:'2026-12-01', SPCX:'2026-12-08'
   };
   var events = [
-    {label:'VRTX earnings (AMC)',            iso:'2026-08-03'},
-    {label:'SPCX first-ever earnings (AMC)', iso:'2026-08-04'},
-    {label:'SPCX IPO lockup expiration',     iso:'2026-08-06'},
-    {label:'CEG earnings',                   iso:'2026-08-06'},
-    {label:'PLUG earnings',                  iso:'2026-08-10'},
-    {label:'QUBT earnings (~window opens)',  iso:'2026-08-13'},
-    {label:'POET earnings (confirmed)',      iso:'2026-08-19'},
-    {label:'IREN earnings (Aug 27 / Sep 16 — sources disagree)', iso:'2026-08-27'},
-    {label:'CRDO clear until',               iso:'2026-09-09'}
+    {label:'POET Q3 earnings (BMO, company-confirmed)',   iso:'2026-11-16'},
+    {label:'NVDA FQ3 earnings (AMC) - first print without Huang (resigned Nov 12; CFO Kress interim CEO). AI-infra sector binary for CRDO/IREN/POET', iso:'2026-11-17'},
+    {label:'FOMC minutes (Oct 27-28 mtg)',                iso:'2026-11-18'},
+    {label:'PLUG Global Symposium',                       iso:'2026-11-19'},
+    {label:'CRDO FQ2 earnings (AMC, company-confirmed)',  iso:'2026-12-01'},
+    {label:'SPCX day-180 lockup (~798M sh eligible, after close)', iso:'2026-12-08'},
+    {label:'FOMC decision (Dec 8-9) - 25bp hike priced; >10% odds of 50bp', iso:'2026-12-09'},
+    {label:'CPI (Nov) 8:30am ET (macro)',                 iso:'2026-12-10'}
   ];
 
   function flagFor(tk){
@@ -296,15 +295,12 @@
   })();
 
   // ---- swing screen (reviewed manually; refreshed by the morning task) ----
-  var screenDate = '2026-08-03';
+  var screenDate = '2026-11-13';
   var candidates = [
-    {n:'VRTX', v:'watch', h:'Reported tonight AMC: rev $3.33B +12%, EPS $4.34, FY guide RAISED to $13.1–13.2B. CASGEVY +151%, JOURNAVX +4x. Binary is now BEHIND it — window open. Decision waits on the open: a disproportionate selloff is the setup; a gap up is a chase. Note you already hold VRTX in Core — a swing on top is concentration, not a new position.'},
-    {n:'MSFT', v:'fail',  h:'Beat big Jul 29 ($4.74 vs $4.33), +8% AH, ~$488 and still climbing Aug 3. Was flagged "cleanest re-entry" BEFORE the move. There is no overreaction left to buy — entering here is chasing, which the framework exists to prevent.'},
-    {n:'ORLY', v:'block', h:'$10B+ NAPA bid live, decision expected by end of summer, antitrust overhang. That is an unscheduled binary sitting open right now. Conviction already logged at ~50%, dead on the floor. Blocked for options; questionable for swings.'},
-    {n:'GLW',  v:'fail',  h:'Beat rev and profit but guided Q3 below consensus, then plunged. The selloff is EXPLAINED by the guide-down — not disproportionate to fundamentals. Fails the overreaction test.'},
-    {n:'SPCX', v:'block', h:'First-ever earnings Aug 4 + IPO lockup Aug 6. Double binary, highest-priority risk on the board. No entry, no exceptions.'},
-    {n:'CEG / QUBT', v:'block', h:'Binary events Aug 6 and ~Aug 13, and no thesis, entry price, or stop documented on either. Charter: do not size until documented.'},
-    {n:'Rotation: payments / industrials / staples', v:'watch', h:'Tape is rotating OUT of semis and AI infrastructure INTO industrials, payments and consumer names — i.e. out of exactly what you are overweight (CRDO, IREN, POET, QUBT). Direction is right for the rotation mandate, but no ticker-level work is done. Entering an unresearched name to fill a slot IS the manufactured trade.'}
+    {n:'Stand aside', v:'watch', h:'Nov 13: Huang resigned (CFO Kress interim CEO). Oct PPI +0.3% m/m vs +0.4% est, but +6.5% y/y (hottest since Nov 2022) - Dec hike still priced. Early bounce faded: SOX -5% (below 10,000), AMD -9%, AVGO -6%, Russell weak. POET Nov 16, NVDA Nov 17, FOMC minutes Nov 18 stacked - nothing clears the 50% floor.'},
+    {n:'CRDO / IREN / POET (held, spec)', v:'block', h:'Direct NVDA/semis contagion. POET prints Nov 16 BMO, NVDA Nov 17 AMC, CRDO Dec 1 AMC. No tactical options through these; no averaging down into a sector flush ahead of the NVDA print. Re-assess after Nov 17.'},
+    {n:'CEG (held, core)', v:'watch', h:'Post-print Nov 9 (beat + guide raise). Window open but still no thesis/entry/stop on file - do not add size until documented.'},
+    {n:'MSFT / IBM / ORLY', v:'watch', h:'All post-print. MSFT -1.4% on M365 outage (service restoring) - headline noise, not a thesis. IBM securities-fraud probe and ORLY NAPA bid overhang remain unscheduled binaries. Re-screen on live quotes after NVDA.'}
   ];
   (function renderScreen(){
     var map={watch:['b-soon','WATCH'],fail:['b-far','FAILS TEST'],block:['b-imminent','BLOCKED']};
